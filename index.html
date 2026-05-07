@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie e GDPR: Guida Schematica</title>
+    <style>
+        :root {
+            --primary-color: #555555;
+            --secondary-color: #FF8C00;
+            --accent-color: #FF6600;
+            --bg-color: #f0f0f0;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Courier, monospace;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: var(--white);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #fdfdfd;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+        }
+
+        .warning {
+            border-left-color: var(--accent-color);
+            background-color: #fff5f5;
+        }
+
+        /* Cookie Banner Style */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .banner-buttons {
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-accept { background-color: #27ae60; color: white; }
+        .btn-reject { background-color: #95a5a6; color: white; }
+
+        .hidden { display: none !important; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Cookie nel Browser e GDPR</h1>
+    <p>Guida tecnica e normativa aggiornata al 2026</p>
+</header>
+
+<main>
+    <section>
+        <h2>1. Cos'è un Cookie?</h2>
+        <p>Un cookie è un piccolo file di testo salvato dal browser sul dispositivo dell'utente durante la navigazione[cite: 1]. Contiene dati in formato <strong>chiave=valore</strong> e viene inviato automaticamente al server ad ogni richiesta successiva verso lo stesso dominio[cite: 2].</p>
+    </section>
+
+    <section>
+        <h2>2. Tipologie di Cookie</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Per Durata</h3>
+                <ul>
+                    <li><strong>Session cookie:</strong> eliminati alla chiusura del browser[cite: 3].</li>
+                    <li><strong>Persistent cookie:</strong> restano fino alla scadenza[cite: 3].</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Per Provenienza</h3>
+                <ul>
+                    <li><strong>First-party:</strong> impostati dal sito visitato[cite: 3].</li>
+                    <li><strong>Third-party:</strong> impostati da domini esterni (es. ads)[cite: 3].</li>
+                </ul>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Finalità</th>
+                    <th>Esempi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tecnici/Necessari</td>
+                    <td>Autenticazione, carrello [cite: 3]</td>
+                </tr>
+                <tr>
+                    <td>Funzionali</td>
+                    <td>Preferenze lingua, tema [cite: 3, 4]</td>
+                </tr>
+                <tr>
+                    <td>Analitici</td>
+                    <td>Statistiche di visita (Google Analytics) [cite: 4]</td>
+                </tr>
+                <tr>
+                    <td>Marketing/Profilazione</td>
+                    <td>Tracciamento, pubblicità personalizzata [cite: 5]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>3. Obblighi per il Titolare</h2>
+        <ul>
+            <li><strong>Cookie banner:</strong> deve consentire accettazione e rifiuto con uguale facilità (no dark pattern).</li>
+            <li><strong>Consenso preventivo:</strong> i cookie non-tecnici NON devono essere attivati prima del consenso esplicito[cite: 8, 9].</li>
+            <li><strong>Revoca:</strong> l'utente deve poter ritirare il consenso in qualsiasi momento[cite: 9].</li>
+            <li><strong>Prova del consenso:</strong> il titolare deve poter dimostrare la correttezza del consenso ottenuto[cite: 9].</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Esenzione dal Consenso</h2>
+        <p>I cookie tecnici non richiedono consenso se usati per:</p>
+        <div class="grid">
+            <div class="card">
+                <ul>
+                    <li>Gestione sessione (login) [cite: 10]</li>
+                    <li>Carrello e-commerce [cite: 10]</li>
+                    <li>Sicurezza (CSRF token) [cite: 10]</li>
+                </ul>
+            </div>
+            <div class="card warning">
+                <p><strong>Richiedono SEMPRE consenso:</strong> Profilazione, Marketing, Pixel di tracciamento e Cookie di social media[cite: 11].</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>5. Sanzioni Amministrative</h2>
+        <p>L'autorità competente in Italia è il <strong>Garante Privacy</strong>[cite: 13]. Le sanzioni possono essere:</p>
+        <ul>
+            <li><strong>Violazioni minori:</strong> Fino a € 10.000.000 o 2% del fatturato globale[cite: 13].</li>
+            <li><strong>Violazioni gravi:</strong> Fino a € 20.000.000 o 4% del fatturato globale[cite: 13].</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>Riferimenti: Reg. (UE) 2016/679 (GDPR), Direttiva ePrivacy 2002/58/CE[cite: 15].</p>
+</footer>
+
+<div id="cookie-banner">
+    <p>Utilizziamo cookie tecnici e di profilazione per migliorare la tua esperienza. Puoi accettare tutto o rifiutare i cookie non necessari.</p>
+    <div class="banner-buttons">
+        <button class="btn btn-reject" onclick="handleConsent('rejected')">Rifiuta non necessari</button>
+        <button class="btn btn-accept" onclick="handleConsent('accepted')">Accetta tutti</button>
+    </div>
+</div>
+
+<script>
+    function handleConsent(status) {
+        console.log("Consenso registrato: " + status);
+        // Nasconde il banner
+        document.getElementById('cookie-banner').classList.add('hidden');
+        
+        // Esempio di persistenza (Best Practice [cite: 14])
+        localStorage.setItem('cookie-consent', status);
+        localStorage.setItem('consent-timestamp', new Date().toISOString());
+    }
+
+    // Controllo al caricamento della pagina
+    window.onload = function() {
+        if (localStorage.getItem('cookie-consent')) {
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+    }
+</script>
+
+</body>
+</html>
